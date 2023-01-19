@@ -20,19 +20,23 @@ link_directories(CMAKE_CURRENT_SOURCE_DIR
 )
 
 qt_add_executable(appAssistant
-    utils.h
-    utils.cpp
-    httpclient.h
-    httpclient.cpp
+    utils.h utils.cpp
+    httpclient.h httpclient.cpp
+    export.h export.cpp
+    test.h test.cpp
     main.cpp
-    test.h
-    test.cpp
 )
 
 qt_add_qml_module(appAssistant
     URI Assistant
     VERSION 1.0
-    QML_FILES main.qml 
+    QML_FILES
+        main.qml
+        MyButton.qml
+        FirstView.qml
+        SecondView.qml
+    RESOURCES
+        images/logo.png
 )
 
 set_target_properties(appAssistant PROPERTIES

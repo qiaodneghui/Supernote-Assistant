@@ -23,7 +23,6 @@ void Test::getData(vector<vector<RattaPoint> > &data,const string& path,const in
     vector<TrailContainer> trailsContainer;
     dataLoad.fetchNotePathFromFile(trailsContainer,path,page);
 
-   /*返回自定义class  List*/
    size_t endsite = trailsContainer.size();
    for (size_t i = 0; i < endsite; i++) {
 
