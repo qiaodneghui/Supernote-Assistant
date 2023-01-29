@@ -2,13 +2,14 @@ import QtQuick
 import Assistant 1.0
 import QtQuick.Controls 2.5
 import QtQuick.Dialogs
+
 Window {
     id: root
     width: 640
     height: 480
     visible: true
-//    maximumHeight: 480
-//    maximumWidth: 640
+    minimumHeight: 480
+    minimumWidth: 640
     color: "#373250"
     title: qsTr("Supernote Assistant")
 
@@ -19,6 +20,7 @@ Window {
         pageRange: ""
         notePath: ""
     }
+
     FirstView{
         id:firstView
         visible: true
@@ -55,17 +57,12 @@ Window {
         id: fileDialog
 
         title: "Please choose a file"
-
+        nameFilters: ["Note files (*.note)"]
         onAccepted: {
 
             secondView.mNotePath= fileDialog.selectedFile.toString().replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"");
             console.log("You chose: " + secondView.mNotePath)
-
-            //Do the data_client stuff and get the file moving
-            //            client.getUploadFile(fileUrls)
         }
-        //        onRejected: {
-        //            console.log("Canceled")
-        //        }
     }
+
 }

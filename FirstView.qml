@@ -1,13 +1,12 @@
 import QtQuick
 import QtQuick.Controls 2.5
-
+import QtQuick.Dialogs
 Item {
 
     signal buttonClicked(string appKey, string hmacKey)
 
     id: firstViewRoot
     visible: true
-//    anchors.fill: parent
     width: 640
     height: 480
     anchors.centerIn: parent
@@ -30,6 +29,7 @@ Item {
         anchors.topMargin:40
         verticalAlignment: Text.AlignVCenter
         font.pixelSize: 12
+        focus: true
         font.family: "微软雅黑"
         color: "white" //"#B2B2B2"
         cursorVisible: true;
@@ -39,7 +39,8 @@ Item {
         width: 280; height: 40;
         background: Rectangle {
             border.width: 0; //border.color: "#B2B2B2"
-            radius: 4; color: "#FFFFFF" //"transparent"
+            radius: 4
+            color: "#FFFFFF" //"transparent"
             opacity: 0.05
             implicitHeight: 40; implicitWidth: 280
         }
@@ -55,9 +56,7 @@ Item {
         font.pixelSize: 12;
         font.family: "微软雅黑"
         color: "white"
-        //cursorVisible: true;
         selectByMouse: true //是否可以选择文本
-        //echoMode: TextInput.Password //密码模式
         selectionColor: "#999999"//选中背景颜色
         placeholderText: qsTr("请输入hmacKey")
         width: 280; height: 40;
@@ -72,7 +71,8 @@ Item {
     //确认按钮
     Rectangle {
         id: nextButton
-        width: 280; height: 48;
+        width: 280
+        height: 40
         color: "#FF5362"
         radius: 4
         anchors.horizontalCenter: parent.horizontalCenter
@@ -93,7 +93,44 @@ Item {
         MouseArea {
             id: nextMouse
             anchors.fill: parent
-            onClicked: firstViewRoot.buttonClicked(appKey.text,hmacKey.text)
+            onClicked:{
+                var ret =check.isValidHmac(appKey.text,hmacKey.text)
+                if(ret === -2){
+                    console.log("-2");
+                    dialog.setMsg( "APP Key is NULL")
+                    dialog.open()
+                }else if(ret === -1){
+                    console.log("-1");
+                    dialog.setMsg( "Hmac Key is NULL")
+                    dialog.open()
+                }else{
+                    console.log("0");
+                    firstViewRoot.buttonClicked(appKey.text,hmacKey.text)
+                }
+
+            }
         }
     }
+
+    Dialog {
+
+        closePolicy: Popup.NoAutoClose
+        id: dialog
+        anchors.centerIn: parent
+        width: 300
+        height: 150
+        modal: true
+        standardButtons: Dialog.Ok
+        Label {
+            id: label
+            anchors.centerIn: parent
+
+        }
+        function setMsg(msg){
+            label.text = msg
+        }
+
+        onAccepted: console.log("Ok clicked")
+    }
+
 }

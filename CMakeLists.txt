@@ -24,6 +24,7 @@ qt_add_executable(appAssistant
     httpclient.h httpclient.cpp
     export.h export.cpp
     test.h test.cpp
+    check.h check.cpp
     main.cpp
 )
 

@@ -3,6 +3,7 @@
 
 #include <QLocale>
 #include <QTranslator>
+#include "check.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,8 @@ int main(int argc, char *argv[])
     }
 
     QQmlApplicationEngine engine;
+    Check check;
+    engine.rootContext()->setContextProperty("check",&check);
 
     const QUrl url(u"qrc:/Assistant/main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

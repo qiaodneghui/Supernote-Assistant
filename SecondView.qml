@@ -11,24 +11,18 @@ Item {
     signal open()
 
     id: secondViewRoot
-    width: 640
-    height: 480
     visible: false
     anchors.centerIn: parent
 
-
     ColumnLayout{
-        width: 400
-        height: 288
         anchors.centerIn: parent
         RowLayout{
             id: row1
             Layout.fillWidth: true
-            Layout.alignment: Qt.AlignCenter
-            //note path
             TextField {
                 id: notePath
                 Layout.fillWidth: true
+                focus: true
                 text: mNotePath
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: 12
@@ -46,9 +40,6 @@ Item {
                     implicitHeight: 40; implicitWidth: 280
                 }
 
-                //                onMNotePathChanged{
-                //                    text:mNotePath
-                //                }
             }
 
 
@@ -56,12 +47,14 @@ Item {
             Rectangle {
                 id: openButtonRect
                 Layout.fillWidth: true
-                width: 100; height: 48;
+                width: 80
+                height: 40
                 color: "#FF5362"
                 radius: 4
                 Text {
                     id: openText
-                    width: parent.width; height: 22
+                    width: parent.width
+                    height: 22
                     color: "#FFFFFF"
                     font.pixelSize: 16
                     font.family: "微软雅黑"
@@ -81,34 +74,42 @@ Item {
 
         //note path
         TextField {
+            Layout.fillWidth: true
+            Layout.topMargin: 20
             id: pageRange
-           Layout.alignment: Qt.AlignCenter
+            focus: false
+            verticalAlignment: Text.AlignVCenter
             font.pixelSize: 12
             font.family: "微软雅黑"
             color: "white" //"#B2B2B2"
-            cursorVisible: true;
+            cursorVisible: false
             selectByMouse: true //是否可以选择文本
             selectionColor: "#999999"//选中背景颜色
             placeholderText: qsTr("请输入页码例如：1-10")
-            width: 280; height: 40;
+            height: 40
+            width: 280
             background: Rectangle {
                 border.width: 0; //border.color: "#B2B2B2"
                 radius: 4; color: "#FFFFFF" //"transparent"
                 opacity: 0.05
-                implicitHeight: 40; implicitWidth: 280
+                implicitHeight: 40
+                implicitWidth: 280
             }
         }
         RowLayout{
             spacing: 10
+            Layout.topMargin: 20
             //返回按钮
             Rectangle {
                 id: lastButtonRect
-                width: 280; height: 48;
+                width: 280
+                height: 40
                 color: "#FF5362"
                 radius: 4
                 Text {
                     id: lastText
-                    width: parent.width; height: 22
+                    width: parent.width
+                    height: 22
                     color: "#FFFFFF"
                     font.pixelSize: 16
                     font.family: "微软雅黑"
@@ -128,7 +129,8 @@ Item {
             //确认按钮
             Rectangle {
                 id: confirmButtonRect
-                width: 280; height: 48;
+                width: 280
+                height: 40
                 Layout.alignment: Qt.AlignCenter
                 color: "#FF5362"
                 radius: 4
