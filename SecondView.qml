@@ -3,7 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 
 Item {
-    property string mNotePath: notePath.text
+    property string mNotePath
     property string mPageRange: pageRange.text
 
     signal confirm()
@@ -11,42 +11,51 @@ Item {
     signal open()
 
     id: secondViewRoot
-    width: 560
-    height: 400
+    width: 640
+    height: 480
     visible: false
-    anchors.fill: parent
-    anchors.centerIn: parent.center
+    anchors.centerIn: parent
 
 
     ColumnLayout{
+        width: 400
+        height: 288
+        anchors.centerIn: parent
         RowLayout{
             id: row1
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignCenter
             //note path
             TextField {
                 id: notePath
-
+                Layout.fillWidth: true
+                text: mNotePath
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: 12
                 font.family: "微软雅黑"
                 color: "white" //"#B2B2B2"
-                cursorVisible: true;
+                cursorVisible: true
                 selectByMouse: true //是否可以选择文本
                 selectionColor: "#999999"//选中背景颜色
                 placeholderText: qsTr("请输入或选择文件")
-                width: 280; height: 48;
+                width: 280; height: 48
                 background: Rectangle {
                     border.width: 0; //border.color: "#B2B2B2"
                     radius: 4; color: "#FFFFFF" //"transparent"
                     opacity: 0.05
                     implicitHeight: 40; implicitWidth: 280
                 }
+
+                //                onMNotePathChanged{
+                //                    text:mNotePath
+                //                }
             }
 
 
             //打开文件
             Rectangle {
                 id: openButtonRect
-                Layout.alignment:parent. Qt.AlignRight
+                Layout.fillWidth: true
                 width: 100; height: 48;
                 color: "#FF5362"
                 radius: 4
@@ -73,7 +82,7 @@ Item {
         //note path
         TextField {
             id: pageRange
-            verticalAlignment: Text.AlignVCenter
+           Layout.alignment: Qt.AlignCenter
             font.pixelSize: 12
             font.family: "微软雅黑"
             color: "white" //"#B2B2B2"
@@ -120,6 +129,7 @@ Item {
             Rectangle {
                 id: confirmButtonRect
                 width: 280; height: 48;
+                Layout.alignment: Qt.AlignCenter
                 color: "#FF5362"
                 radius: 4
                 Text {
@@ -142,7 +152,4 @@ Item {
             }
         }
     }
-
-
-
 }

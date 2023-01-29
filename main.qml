@@ -7,8 +7,8 @@ Window {
     width: 640
     height: 480
     visible: true
-    maximumHeight: 480
-    maximumWidth: 640
+//    maximumHeight: 480
+//    maximumWidth: 640
     color: "#373250"
     title: qsTr("Supernote Assistant")
 
@@ -57,13 +57,15 @@ Window {
         title: "Please choose a file"
 
         onAccepted: {
-            console.log("You chose: " + fileDialog.OpenFile.toString())
+
+            secondView.mNotePath= fileDialog.selectedFile.toString().replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"");
+            console.log("You chose: " + secondView.mNotePath)
 
             //Do the data_client stuff and get the file moving
-//            client.getUploadFile(fileUrls)
+            //            client.getUploadFile(fileUrls)
         }
-//        onRejected: {
-//            console.log("Canceled")
-//        }
+        //        onRejected: {
+        //            console.log("Canceled")
+        //        }
     }
 }

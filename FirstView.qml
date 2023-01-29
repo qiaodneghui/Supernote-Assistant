@@ -7,8 +7,10 @@ Item {
 
     id: firstViewRoot
     visible: true
-    anchors.fill: parent
-    anchors.centerIn: parent.center
+//    anchors.fill: parent
+    width: 640
+    height: 480
+    anchors.centerIn: parent
 
     Image {
         id: logo
